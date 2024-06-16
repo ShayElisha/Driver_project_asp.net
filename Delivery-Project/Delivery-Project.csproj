@@ -1,0 +1,379 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2381E888-B954-4EEA-8604-4BA86A6BA020}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Delivery_Project</RootNamespace>
+    <AssemblyName>Delivery-Project</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44356</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Google.Apis, Version=1.68.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.68.0\lib\net462\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Admin.Directory.directory_v1, Version=1.68.0.3435, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Admin.Directory.directory_v1.1.68.0.3435\lib\net462\Google.Apis.Admin.Directory.directory_v1.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.68.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.68.0\lib\net462\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.68.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.68.0\lib\net462\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.CodeDom, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.CodeDom.7.0.0\lib\net462\System.CodeDom.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AdminManager\AddressAddEdit.aspx" />
+    <Content Include="AdminManager\AddressList.aspx" />
+    <Content Include="AdminManager\blank.html" />
+    <Content Include="AdminManager\buttons.html" />
+    <Content Include="AdminManager\CitiesAddEdit.aspx" />
+    <Content Include="AdminManager\CitiesList.aspx" />
+    <Content Include="AdminManager\css\font-awesome\font-awesome.min.css" />
+    <Content Include="AdminManager\css\ltr\bootstrap.min.css" />
+    <Content Include="AdminManager\css\ltr\sb-admin-2.css" />
+    <Content Include="AdminManager\css\plugins\dataTables.bootstrap.css" />
+    <Content Include="AdminManager\css\plugins\metisMenu\metisMenu.css" />
+    <Content Include="AdminManager\css\plugins\metisMenu\metisMenu.min.css" />
+    <Content Include="AdminManager\css\plugins\morris.css" />
+    <Content Include="AdminManager\css\plugins\social-buttons.css" />
+    <Content Include="AdminManager\css\plugins\timeline.css" />
+    <Content Include="AdminManager\css\rtl\bootstrap.min.css" />
+    <Content Include="AdminManager\css\rtl\bootstrap.rtl.css" />
+    <Content Include="AdminManager\css\rtl\sb-admin-2.css" />
+    <Content Include="AdminManager\DriverjobAddEdit.aspx" />
+    <Content Include="AdminManager\extras\image-samples\buttons.png" />
+    <Content Include="AdminManager\extras\image-samples\tables.png" />
+    <Content Include="AdminManager\extras\image-samples\typography.png" />
+    <Content Include="AdminManager\flot.html" />
+    <Content Include="AdminManager\fonts\fontawesome-webfont-v=4.2.0.svg" />
+    <Content Include="AdminManager\fonts\fontawesome-webfont.svg" />
+    <Content Include="AdminManager\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="AdminManager\forms.html" />
+    <Content Include="AdminManager\grid.html" />
+    <Content Include="AdminManager\images\bootstrap\datatables\sort_asc.png" />
+    <Content Include="AdminManager\images\bootstrap\datatables\sort_asc_disabled.png" />
+    <Content Include="AdminManager\images\bootstrap\datatables\sort_both.png" />
+    <Content Include="AdminManager\images\bootstrap\datatables\sort_desc.png" />
+    <Content Include="AdminManager\images\bootstrap\datatables\sort_desc_disabled.png" />
+    <Content Include="AdminManager\index.html" />
+    <Content Include="AdminManager\JobsDriver.aspx" />
+    <Content Include="AdminManager\js\bootstrap.min.js" />
+    <Content Include="AdminManager\js\bootstrap\bootstrap.min.js" />
+    <Content Include="AdminManager\js\bootstrap\dataTables.bootstrap.min.js" />
+    <Content Include="AdminManager\js\flot\excanvas.min.js" />
+    <Content Include="AdminManager\js\flot\jquery.flot.js" />
+    <Content Include="AdminManager\js\flot\jquery.flot.pie.js" />
+    <Content Include="AdminManager\js\flot\jquery.flot.resize.js" />
+    <Content Include="AdminManager\js\flot\jquery.flot.time.js" />
+    <Content Include="AdminManager\js\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="AdminManager\js\jquery-1.11.0.js" />
+    <Content Include="AdminManager\js\jquery\jquery.dataTables.min.js" />
+    <Content Include="AdminManager\js\jquery\jquery.min.js" />
+    <Content Include="AdminManager\js\metisMenu\metisMenu.min.js" />
+    <Content Include="AdminManager\js\morris\morris.min.js" />
+    <Content Include="AdminManager\js\raphael\raphael.min.js" />
+    <Content Include="AdminManager\js\sb-admin-2.js" />
+    <Content Include="AdminManager\login.html" />
+    <Content Include="AdminManager\morris.html" />
+    <Content Include="AdminManager\notifications.html" />
+    <Content Include="AdminManager\panels-wells.html" />
+    <Content Include="AdminManager\tables.html" />
+    <Content Include="AdminManager\typography.html" />
+    <Content Include="AdminManager\UsersAddEdit.aspx" />
+    <Content Include="AdminManager\UsersList.aspx" />
+    <Content Include="driverPage.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="HtmlPage1.html" />
+    <Content Include="Login.aspx" />
+    <Content Include="MainPage.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="workPage.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminManager\AddressAddEdit.aspx.cs">
+      <DependentUpon>AddressAddEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminManager\AddressAddEdit.aspx.designer.cs">
+      <DependentUpon>AddressAddEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminManager\AddressList.aspx.cs">
+      <DependentUpon>AddressList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminManager\AddressList.aspx.designer.cs">
+      <DependentUpon>AddressList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminManager\CitiesAddEdit.aspx.cs">
+      <DependentUpon>CitiesAddEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminManager\CitiesAddEdit.aspx.designer.cs">
+      <DependentUpon>CitiesAddEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminManager\CitiesList.aspx.cs">
+      <DependentUpon>CitiesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminManager\CitiesList.aspx.designer.cs">
+      <DependentUpon>CitiesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminManager\DriverjobAddEdit.aspx.cs">
+      <DependentUpon>DriverjobAddEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminManager\DriverjobAddEdit.aspx.designer.cs">
+      <DependentUpon>DriverjobAddEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminManager\JobsDriver.aspx.cs">
+      <DependentUpon>JobsDriver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminManager\JobsDriver.aspx.designer.cs">
+      <DependentUpon>JobsDriver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminManager\UsersAddEdit.aspx.cs">
+      <DependentUpon>UsersAddEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminManager\UsersAddEdit.aspx.designer.cs">
+      <DependentUpon>UsersAddEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminManager\UsersList.aspx.cs">
+      <DependentUpon>UsersList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminManager\UsersList.aspx.designer.cs">
+      <DependentUpon>UsersList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\BLL\Cities.cs" />
+    <Compile Include="App_Code\BLL\Jobs.cs" />
+    <Compile Include="App_Code\BLL\Salaries.cs" />
+    <Compile Include="App_Code\BLL\Customers.cs" />
+    <Compile Include="App_Code\BLL\Users.cs" />
+    <Compile Include="App_Code\BLL\Address.cs" />
+    <Compile Include="App_Code\BLL\Vehicles.cs" />
+    <Compile Include="App_Code\DAL\AddressDAL.cs" />
+    <Compile Include="App_Code\DAL\CustomerDAL.cs" />
+    <Compile Include="App_Code\DAL\UsersDAL.cs" />
+    <Compile Include="App_Code\DbContext.cs" />
+    <Compile Include="AdminManager\BackAdmin.Master.cs">
+      <DependentUpon>BackAdmin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminManager\BackAdmin.Master.designer.cs">
+      <DependentUpon>BackAdmin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\DAL\CitiesDAL.cs" />
+    <Compile Include="Client-Side.Master.cs">
+      <DependentUpon>Client-Side.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client-Side.Master.designer.cs">
+      <DependentUpon>Client-Side.Master</DependentUpon>
+    </Compile>
+    <Compile Include="driverPage.aspx.cs">
+      <DependentUpon>driverPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="driverPage.aspx.designer.cs">
+      <DependentUpon>driverPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.aspx.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainPage.aspx.designer.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="workPage.aspx.cs">
+      <DependentUpon>workPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="workPage.aspx.designer.cs">
+      <DependentUpon>workPage.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client-Side.Master" />
+    <Content Include="AdminManager\fonts\fontawesome-webfont-.eot" />
+    <Content Include="AdminManager\fonts\fontawesome-webfont-v=4.2.0.eot" />
+    <Content Include="AdminManager\fonts\fontawesome-webfont-v=4.2.0.ttf" />
+    <Content Include="AdminManager\fonts\fontawesome-webfont-v=4.2.0.woff" />
+    <Content Include="AdminManager\fonts\fontawesome-webfont.eot" />
+    <Content Include="AdminManager\fonts\fontawesome-webfont.ttf" />
+    <Content Include="AdminManager\fonts\fontawesome-webfont.woff" />
+    <Content Include="AdminManager\fonts\FontAwesome.otf" />
+    <Content Include="AdminManager\fonts\glyphicons-halflings-regular-.eot" />
+    <Content Include="AdminManager\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="AdminManager\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="AdminManager\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="AdminManager\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="AdminManager\README.md" />
+    <Content Include="AdminManager\BackAdmin.Master" />
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="css\" />
+    <Folder Include="Image\" />
+    <Folder Include="js\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53965</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44356/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
