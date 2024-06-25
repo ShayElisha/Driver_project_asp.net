@@ -15,6 +15,7 @@ namespace Delivery_Project.AdminManager
         {
             if (!IsPostBack)
             {
+                LoadCities();
                 string DriverId = Request["DriverId"] + "";
                 if (string.IsNullOrEmpty(DriverId))
                 {
@@ -32,7 +33,7 @@ namespace Delivery_Project.AdminManager
                             Dname.Text = driver[i].FullName;
                             Email.Text = driver[i].Email + "";
                             Password.Text = driver[i].Password;
-                            cityId.Text = driver[i].CityId + "";
+                            DDLcity.Text = driver[i].CityId + "";
                             Address.Text = driver[i].Address;
                             Phone.Text = driver[i].Phone + "";
                             MaxAmountShipment.Text = driver[i].MaxAmountShipment+"";
@@ -44,7 +45,17 @@ namespace Delivery_Project.AdminManager
                 }
             }
         }
+        private void LoadCities()
+        {
+            List<Cities> cities = Cities.GetAll();
+            DDLcity.DataSource = cities;
+            DDLcity.DataTextField = "CityName";
+            DDLcity.DataValueField = "CityId";
+            DDLcity.DataBind();
 
+            // הוסף אופציה ברירת מחדל לבחירת עיר
+            DDLcity.Items.Insert(0, new ListItem("בחר עיר", "0"));
+        }
         protected void btnSave_Click(object sender, EventArgs e)
         {
             Driver driver = new Driver();
@@ -64,7 +75,7 @@ namespace Delivery_Project.AdminManager
             driver.FullName = Dname.Text;
             driver.Email = Email.Text;
             driver.Password = Password.Text;
-            driver.CityId = int.Parse(cityId.Text);
+            driver.CityId = int.Parse(DDLcity.Text);
             driver.Address = Address.Text;
             driver.Phone = Phone.Text;
             driver.MaxAmountShipment = int.Parse(MaxAmountShipment.Text);

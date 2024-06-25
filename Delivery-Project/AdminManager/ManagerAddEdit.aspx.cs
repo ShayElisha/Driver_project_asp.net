@@ -15,6 +15,7 @@ namespace Delivery_Project.AdminManager
         {
             if (!IsPostBack)
             {
+                LoadCities();
                 string managerId = Request["ManagerId"] + "";
                 if (string.IsNullOrEmpty(managerId))
                 {
@@ -31,7 +32,7 @@ namespace Delivery_Project.AdminManager
                             FullName.Text = manager[i].FullName;
                             Email.Text = manager[i].Email + "";
                             Password.Text = manager[i].Password;
-                            cityId.Text = manager[i].CityId + "";
+                            DDLcity.Text = manager[i].CityId + "";
                             Address.Text = manager[i].Address;
                             Phone.Text = manager[i].Phone + "";
                             Phone.Text = manager[i].Phone + "";
@@ -41,6 +42,17 @@ namespace Delivery_Project.AdminManager
                     }
                 }
             }
+        }
+        private void LoadCities()
+        {
+            List<Cities> cities = Cities.GetAll();
+            DDLcity.DataSource = cities;
+            DDLcity.DataTextField = "CityName";
+            DDLcity.DataValueField = "CityId";
+            DDLcity.DataBind();
+
+            // הוסף אופציה ברירת מחדל לבחירת עיר
+            DDLcity.Items.Insert(0, new ListItem("בחר עיר", "0"));
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -60,7 +72,7 @@ namespace Delivery_Project.AdminManager
             manager.FullName = FullName.Text;
             manager.Email = Email.Text;
             manager.Password = Password.Text;
-            manager.CityId = int.Parse(cityId.Text);
+            manager.CityId = int.Parse(DDLcity.Text);
             manager.Address = Address.Text;
             manager.Phone = Phone.Text;
             manager.status = int.Parse(status.Text);

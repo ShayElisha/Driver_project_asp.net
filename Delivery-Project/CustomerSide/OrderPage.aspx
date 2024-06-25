@@ -103,7 +103,23 @@
             100% { transform: rotate(360deg); }
         }
     </style>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
     <script type="text/javascript">
+        $(document).ready(function () {
+            $('#<%= DDLcity.ClientID %>').select2({
+                placeholder: 'בחר עיר',
+                allowClear: true,
+                width: '100%'
+            });
+
+            $('#ddlDeliveryTime').change(function () {
+                updateExpectedDeliveryDate();
+            });
+        });
+
         function showLoader() {
             document.getElementById("loader").style.display = "block";
         }
@@ -142,9 +158,9 @@
             <label for="txtAddress">כתובת:</label>
             <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control" Placeholder="הזן את הכתובת למשלוח"></asp:TextBox>
         </div>
-        <div class="form-group">
-            <label for="txtCityId">עיר:</label>
-            <asp:TextBox ID="txtCityId" runat="server" CssClass="form-control" Placeholder="הזן את הכתובת למשלוח"></asp:TextBox>
+       <div class="form-group">
+            <label for="ddlCity">עיר:</label>
+            <asp:DropDownList ID="DDLcity" runat="server" CssClass="form-control"></asp:DropDownList>
         </div>
         <div class="form-group">
             <label for="txtQuantity">כמות:</label>

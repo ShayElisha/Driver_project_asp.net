@@ -51,13 +51,13 @@ namespace Delivery_Project.AdminManager
         protected global::System.Web.UI.WebControls.TextBox Password;
 
         /// <summary>
-        /// cityId control.
+        /// DDLcity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox cityId;
+        protected global::System.Web.UI.WebControls.DropDownList DDLcity;
 
         /// <summary>
         /// Address control.

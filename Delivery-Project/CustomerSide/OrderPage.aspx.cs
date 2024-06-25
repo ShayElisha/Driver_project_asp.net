@@ -26,9 +26,20 @@ namespace Delivery_Project.CustomerSide
                 {
                     Response.Redirect("/MainPage.aspx");
                 }
+                LoadCities();
             }
         }
+        private void LoadCities()
+        {
+            List<Cities> cities = Cities.GetAll();
+            DDLcity.DataSource = cities;
+            DDLcity.DataTextField = "CityName";
+            DDLcity.DataValueField = "CityId";
+            DDLcity.DataBind();
 
+            // הוסף אופציה ברירת מחדל לבחירת עיר
+            DDLcity.Items.Insert(0, new ListItem("בחר עיר", "0"));
+        }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             Orders Orders = new Orders();
@@ -53,7 +64,7 @@ namespace Delivery_Project.CustomerSide
             Orders.Address = txtAddress.Text;
 
             // בדיקת תקינות והמרה של CityId
-            if (int.TryParse(txtCityId.Text, out int cityId))
+            if (int.TryParse(DDLcity.Text, out int cityId))
             {
                 Orders.CityId = cityId;
             }
@@ -73,7 +84,10 @@ namespace Delivery_Project.CustomerSide
             }
 
             Orders.Notes = txtNotes.Text;
+
             int deliveryDays = int.Parse(ddlDeliveryTime.SelectedValue);
+
+            // קביעת ChooseDeliveryTime באופן בטוח
             Orders.ChooseDeliveryTime = DateTime.Now.AddDays(deliveryDays);
 
             // שמירת העיר החדשה

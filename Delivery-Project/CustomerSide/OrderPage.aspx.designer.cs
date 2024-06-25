@@ -69,13 +69,13 @@ namespace Delivery_Project.CustomerSide
         protected global::System.Web.UI.WebControls.TextBox txtAddress;
 
         /// <summary>
-        /// txtCityId control.
+        /// DDLcity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCityId;
+        protected global::System.Web.UI.WebControls.DropDownList DDLcity;
 
         /// <summary>
         /// txtQuantity control.

@@ -78,8 +78,8 @@ namespace DAL
             string sql = "";
             if (order.OrderID == -1)
             {
-                sql = "INSERT INTO T_Orders (CustomerID,FullName, Email, Phone, CityId, Address, Quantity, Notes,ChooseDeliveryTime) VALUES ";
-                sql += $"(N'{order.CustomerID}',N'{order.FullName}', N'{order.Email}', N'{order.Phone}', {order.CityId}, N'{order.Address}', {order.Quantity}, N'{order.Notes}', N'{order.ChooseDeliveryTime}')";
+                sql = "INSERT INTO T_Orders (CustomerID, FullName, Email, Phone, CityId, Address, Quantity, Notes, ChooseDeliveryTime) VALUES ";
+                sql += $"(N'{order.CustomerID}', N'{order.FullName}', N'{order.Email}', N'{order.Phone}', {order.CityId}, N'{order.Address}', {order.Quantity}, N'{order.Notes}', {(order.ChooseDeliveryTime.HasValue ? $"'{order.ChooseDeliveryTime.Value.ToString("yyyy-MM-dd HH:mm:ss")}'" : "NULL")})";
             }
             else
             {
@@ -100,10 +100,8 @@ namespace DAL
                 {
                     sql += $", DeliveryTime='{order.DeliveryTime?.ToString("yyyy-MM-dd HH:mm:ss")}' ";
                 }
-                if (order.ChooseDeliveryTime != null)
-                {
-                    sql += $", ChooseDeliveryTime='{order.ChooseDeliveryTime?.ToString("yyyy-MM-dd HH:mm:ss")}' ";
-                }
+               
+
                 sql += $"WHERE OrderID={order.OrderID}";
             }
 
