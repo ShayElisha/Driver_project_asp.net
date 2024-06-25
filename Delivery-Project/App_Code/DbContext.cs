@@ -34,13 +34,24 @@ namespace DATA
             SqlCommand cmd = new SqlCommand(sql, conn);
             SqlDataAdapter Da = new SqlDataAdapter(cmd);
             DataTable Dt = new DataTable();
-            Da.Fill(Dt);//מילוי טבלת הנתונים בתוצאות השאילתה 
+            Da.Fill(Dt);
             return Dt;// החזרת טבלת הנתונים 
         }
         public object ExecuteScalar(string sql)
         {
             SqlCommand cmd = new SqlCommand(sql, conn);
             return cmd.ExecuteScalar();
+        }
+        public object ExecuteScalar(string sql, SqlParameter[] parameters)
+        {
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                if (parameters != null)
+                {
+                    cmd.Parameters.AddRange(parameters);
+                }
+                return cmd.ExecuteScalar();
+            }
         }
     }
 }

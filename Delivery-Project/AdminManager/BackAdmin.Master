@@ -294,43 +294,41 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>כתובות<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>נהגים<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="AddressList.aspx">רשימת כתובות</a>
+                                <a href="DriverList.aspx">רשימת נהגים</a>
                             </li>
                             <li>
-                                <a href="ADdressAddEdit.aspx">הוספת/עדכון כתובת</a>
+                                <a href="DriverAddEdit.aspx">הוספת/עדכון נהגים</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>ערים<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>לקוחות<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="citiesList.aspx">רשימת ערים</a>
+                                <a href="CustomerList.aspx">רשימת לקוחות</a>
                             </li>
                             <li>
-                                <a href="citiesAddEdit.aspx">הוספת\עריכת ערים חדשות</a>
+                                <a href="CustomerAddEdit.aspx">הוספת\עריכת לקוחות</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                      <li>
-                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> משתמשים<span class="fa arrow"></span></a>
+                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> קווי חלוקה<span class="fa arrow"></span></a>
                          <ul class="nav nav-second-level">
                              <li>
-                                 <a href="ClientList.aspx">רשימת משתמשים</a>
+                                 <a href="ShipmentList.aspx">רשימת משימות</a>
                              </li>
-                             <li>
-                                 <a href="clientAddEdit.aspx">הוספת/עריכת משתמשים  </a>
-                             </li>
+                             
                          </ul>
                          <!-- /.nav-second-level -->
                      </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                        <a href="OrderList.aspx">רשימת הזמנות</i> Forms</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>

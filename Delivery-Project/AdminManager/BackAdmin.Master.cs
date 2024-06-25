@@ -11,7 +11,10 @@ namespace Delivery_Project.AdminManager
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            /*if (Session["Manager"] == null)
+            {
+                Response.Redirect("/MainPage.aspx");
+            }*/
         }
     }
 }

@@ -23,7 +23,6 @@ namespace DAL
             {
                 CityId = int.Parse(Dt.Rows[i]["CityId"] + ""),
                 CityName = Dt.Rows[i]["CityName"] + "",
-                status = int.Parse(Dt.Rows[i]["status"] + ""),
                 AddDate = Dt.Rows[i]["AddDate"] + ""
             };
             city.Add(C);

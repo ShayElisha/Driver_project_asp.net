@@ -15,6 +15,5 @@ namespace BLL
         public string CustomerName { get; set; }
         public string address {  get; set; }
         public int vehicleID {  get; set; }
-        public string JobDate {  get; set; }
     }
 }

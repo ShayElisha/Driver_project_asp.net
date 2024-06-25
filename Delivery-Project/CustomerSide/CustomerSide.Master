@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="CustomerSide.master.cs" Inherits="Delivery_Project.CustomerSide.CustomerSide" %>
+
+<!DOCTYPE html>
+<html dir="rtl">
+<head runat="server">
+    <title>מערכת הזמנות - לקוחות</title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar a {
+            float: right;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .navbar a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+        .container {
+            margin-top: 70px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            background-color: #333;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href='<%= ResolveUrl("~/Orders.aspx") %>' class="<%= Request.Path.Contains("Orders") ? "active" : "" %>">הזמנות</a>
+        <a href='<%= ResolveUrl("~/Statuses.aspx") %>' class="<%= Request.Path.Contains("Statuses") ? "active" : "" %>">סטטוסים</a>
+    </div>
+
+    <form id="form1" runat="server">
+        <div class="container">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+    <div class="footer">
+        <p>&copy; 2023 מערכת הזמנות - לקוחות</p>
+    </div>
+</body>
+</html>

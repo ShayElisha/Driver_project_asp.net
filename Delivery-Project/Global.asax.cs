@@ -14,8 +14,14 @@ namespace Delivery_Project
         protected void Application_Start(object sender, EventArgs e)
         {
             Application["cities"] = Cities.GetAll();
-            Application["Clients"] = Users.GetAll();
-            Application["address"] = Address.GetAll();
+            Application["Manegers"] = Manager.GetAll();
+            Application["Drivers"] = Driver.GetAll();
+            Application["Customers"] = Customers.GetAll();
+            Application["Orders"] = Orders.GetAll();
+            Application["Shipments"] = Shipments.GetAll();
+
+
+
         }
 
         protected void Session_Start(object sender, EventArgs e)
