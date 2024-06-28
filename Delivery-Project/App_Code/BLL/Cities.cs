@@ -24,6 +24,20 @@ namespace BLL
         {
             return CitiesDAL.Save(this);
         }
+        public static string GetCityNameById(List<Cities> cities, string cityId)
+        {
+            int id;
+            if (int.TryParse(cityId, out id))
+            {
+                var city = cities?.Find(c => c.CityId == id);
+                if (city != null)
+                {
+                    return city.CityName;
+                }
+            }
+            return cityId; // Return the ID itself if the name is not found
+        }
+
     }
     
 }

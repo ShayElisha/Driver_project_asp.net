@@ -56,8 +56,8 @@
 </head>
 <body>
     <div class="navbar">
-        <a href='<%= ResolveUrl("~/Orders.aspx") %>' class="<%= Request.Path.Contains("Orders") ? "active" : "" %>">הזמנות</a>
-        <a href='<%= ResolveUrl("~/Statuses.aspx") %>' class="<%= Request.Path.Contains("Statuses") ? "active" : "" %>">סטטוסים</a>
+        <a href='<%= ResolveUrl("/CustomerSide/OrderPage.aspx") %>' class='<% if (Request.Path.Contains("OrderPage")) { %>active<% } %>'>הזמנות</a>
+        <a href='<%= ResolveUrl("/CustomerSide/OrderStatus.aspx") %>' class='<% if (Request.Path.Contains("OrderStatus")) { %>active<% } %>'>סטטוסים</a>
     </div>
 
     <form id="form1" runat="server">
@@ -67,7 +67,7 @@
     </form>
 
     <div class="footer">
-        <p>&copy; 2023 מערכת הזמנות - לקוחות</p>
+        <p>&copy; 2024 מערכת הזמנות - לקוחות</p>
     </div>
 </body>
 </html>

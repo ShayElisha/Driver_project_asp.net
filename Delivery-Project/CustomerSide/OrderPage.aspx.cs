@@ -64,14 +64,9 @@ namespace Delivery_Project.CustomerSide
             Orders.Address = txtAddress.Text;
 
             // בדיקת תקינות והמרה של CityId
-            if (int.TryParse(DDLcity.Text, out int cityId))
-            {
-                Orders.CityId = cityId;
-            }
-            else
-            {
-                Orders.CityId = 0;
-            }
+            
+            Orders.CityId = DDLcity.SelectedValue;
+            
 
             // בדיקת תקינות והמרה של Quantity
             if (int.TryParse(txtQuantity.Text, out int quantity))

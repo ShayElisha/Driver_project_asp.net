@@ -240,6 +240,7 @@
     <Content Include="AdminManager\ShipmentList.aspx" />
     <Content Include="AdminManager\tables.html" />
     <Content Include="AdminManager\typography.html" />
+    <Content Include="CustomerSide\HistoryOrder.aspx" />
     <Content Include="CustomerSide\OrderPage.aspx" />
     <Content Include="CustomerSide\OrderStatus.aspx" />
     <Content Include="driverPage.aspx" />
@@ -362,6 +363,13 @@
     </Compile>
     <Compile Include="CustomerSide\CustomerSide.Master.designer.cs">
       <DependentUpon>CustomerSide.Master</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerSide\HistoryOrder.aspx.cs">
+      <DependentUpon>HistoryOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerSide\HistoryOrder.aspx.designer.cs">
+      <DependentUpon>HistoryOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="CustomerSide\OrderPage.aspx.cs">
       <DependentUpon>OrderPage.aspx</DependentUpon>

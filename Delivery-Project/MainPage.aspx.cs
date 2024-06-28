@@ -72,9 +72,10 @@ namespace Delivery_Project
                 if (txtDriverEmail.Text == Dr["Email"].ToString() && txtDriverPassword.Text == Dr["Password"].ToString())
                 {
                     // ניצור סשן ונשמור את האובייקט של המשתמש 
+                    Session["Id"] = Dr["Id"].ToString();
                     Session["Driver"] = Dr;
                     // נעביר את המשתמש לעמוד מוצרים
-                    Response.Redirect("/driverPage.aspx");
+                    Response.Redirect("DriverSide/WorkDriver.aspx");
                 }
                 
             }

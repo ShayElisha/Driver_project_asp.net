@@ -22,6 +22,7 @@ namespace DAL
                     ShipId = int.Parse(Dt.Rows[i]["ShipId"].ToString()),
                     OrderID = Dt.Rows[i]["OrderID"].ToString(),
                     CustomerID = Dt.Rows[i]["CustomerID"].ToString(),
+                    CustomerName = Dt.Rows[i]["CustomerName"].ToString(),
                     SourceAdd = Dt.Rows[i]["SourceAdd"].ToString(),
                     SourceCity = Dt.Rows[i]["SourceCity"].ToString(),
                     DestinationAdd = Dt.Rows[i]["DestinationAdd"].ToString(),
@@ -54,6 +55,7 @@ namespace DAL
                     ShipId = int.Parse(Dt.Rows[0]["ShipId"].ToString()),
                     OrderID = Dt.Rows[0]["OrderID"].ToString(),
                     CustomerID = Dt.Rows[0]["CustomerID"].ToString(),
+                    CustomerName = Dt.Rows[0]["CustomerName"].ToString(),
                     SourceAdd = Dt.Rows[0]["SourceAdd"].ToString(),
                     SourceCity = Dt.Rows[0]["SourceCity"].ToString(),
                     DestinationAdd = Dt.Rows[0]["DestinationAdd"].ToString(),
@@ -76,22 +78,24 @@ namespace DAL
             string sql = "";
             if (shipment.ShipId == -1)
             {
-                sql = "insert into T_Shipments (OrderID,CustomerID, SourceAdd, SourceCity, DestinationAdd, DestinationCity, Phone, Quantity, DriverId, Status) values ";
-                sql += $"({shipment.OrderID}, {shipment.CustomerID}, N'{shipment.SourceAdd}', N'{shipment.SourceCity}', N'{shipment.DestinationAdd}', N'{shipment.DestinationCity}', N'{shipment.Phone}', {shipment.Quantity}, {shipment.DriverId}, {shipment.Status})";
+                sql = "INSERT INTO T_Shipments (OrderID, CustomerID, CustomerName, SourceAdd, SourceCity, DestinationAdd, DestinationCity, Phone, Quantity, DriverId, DateDelivery, Status) VALUES ";
+                sql += $"('{shipment.OrderID}', '{shipment.CustomerID}', '{shipment.CustomerName}', N'{shipment.SourceAdd}', N'{shipment.SourceCity}', N'{shipment.DestinationAdd}', N'{shipment.DestinationCity}', '{shipment.Phone}', {shipment.Quantity}, {shipment.DriverId}, '{shipment.DateDelivery?.ToString("yyyy-MM-dd HH:mm:ss")}', {shipment.Status})";
             }
             else
             {
-                sql = "update T_Shipments set ";
-                sql += $"OrderID={shipment.OrderID}, ";
-                sql += $"CustomerID={shipment.CustomerID}, ";
+                sql = "UPDATE T_Shipments SET ";
+                sql += $"OrderID='{shipment.OrderID}', ";
+                sql += $"CustomerID='{shipment.CustomerID}', ";
+                sql += $"CustomerName='{shipment.CustomerName}', ";
                 sql += $"SourceAdd=N'{shipment.SourceAdd}', ";
                 sql += $"SourceCity=N'{shipment.SourceCity}', ";
                 sql += $"DestinationAdd=N'{shipment.DestinationAdd}', ";
                 sql += $"DestinationCity=N'{shipment.DestinationCity}', ";
-                sql += $"Phone=N'{shipment.Phone}', ";
+                sql += $"Phone='{shipment.Phone}', ";
                 sql += $"Quantity={shipment.Quantity}, ";
                 sql += $"DriverId={shipment.DriverId}, ";
                 sql += $"Status={shipment.Status} ";
+
                 if (shipment.CollectionDate != null)
                 {
                     sql += $", CollectionDate='{shipment.CollectionDate?.ToString("yyyy-MM-dd HH:mm:ss")}' ";
@@ -104,13 +108,12 @@ namespace DAL
                 {
                     sql += $", ReleaseDate='{shipment.ReleaseDate?.ToString("yyyy-MM-dd HH:mm:ss")}' ";
                 }
-                sql += $"where ShipId={shipment.ShipId}";
+                sql += $"WHERE ShipId={shipment.ShipId}";
             }
-
             DbContext Db = new DbContext();
             Db.ExecuteNonQuery(sql);
         }
-        public static void DeleteShipment(int id)
+            public static void DeleteShipment(int id)
         {
             DbContext Db = new DbContext();
             string Sql = $"DELETE FROM T_Shipments WHERE ShipId = {id}";

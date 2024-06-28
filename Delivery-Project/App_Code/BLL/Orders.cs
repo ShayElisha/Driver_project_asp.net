@@ -15,7 +15,7 @@ namespace BLL
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-        public int CityId { get; set; }
+        public string CityId { get; set; }
         public int Quantity { get; set; }
         public string Notes { get; set; }
         public int status { get; set; }

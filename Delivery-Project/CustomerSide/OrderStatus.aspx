@@ -9,13 +9,13 @@
         }
 
         .container {
-            width: 90%;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-sizing: border-box;
         }
 
         h2 {
@@ -25,7 +25,7 @@
         }
 
         table {
-            width: 90%;
+            width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
         }
@@ -48,9 +48,31 @@
             color: #888;
             font-size: 18px;
         }
-        .table-responsive {
+        /*.table-responsive {
             overflow-x: auto;
-        }
+        }*/
+        .btnConfirm {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btnConfirm:hover {
+    background-color: #45a049;
+}
+
+.btnConfirm:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -74,7 +96,7 @@
                         <th>תאריך הזמנה</th>
                         <th>תאריך הגעה</th>
                         <th>סטטוס</th>
-                       
+                       <th>פעולות</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,7 +115,13 @@
                                 <td><%# Eval("ChooseDeliveryTime") %></td>
                                 <td><%# Eval("OrderDate") %></td>
                                 <td><%# Eval("Datedelivery") %></td>
-                                <td><%#Eval("Status") %></td>
+                                <td><%# ConvertStatusToText(Eval("Status")) %></td>
+                                                                <td>
+                                   <asp:PlaceHolder ID="phConfirmButton" runat="server" Visible='<%# Convert.ToInt32(Eval("Status")) == 3 %>'>
+                                        <asp:Button ID="btnConfirm" runat="server" Text="אשר הזמנה" OnClick="ConfirmOrder_Click" CommandArgument='<%# Eval("OrderID") %>' CssClass="btnConfirm" />
+                                    </asp:PlaceHolder>
+                                </td>
+
                                 
                                 
                             </tr>

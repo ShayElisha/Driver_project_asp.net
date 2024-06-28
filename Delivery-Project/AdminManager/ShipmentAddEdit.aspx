@@ -32,6 +32,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <asp:HiddenField ID="hidShipId" runat="server" Value="-1"/>
+                            <asp:HiddenField ID="hidChooseDeliveryTime" runat="server" Value=""/>
                             <div class="form-group">
                                 <label>קוד הזמנה</label>
                                 <asp:TextBox ID="OrderID" CssClass="form-control" runat="server" placeholder="נא הזן כתובת מקור" ReadOnly="true"/>

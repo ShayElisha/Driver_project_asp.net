@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -42,14 +43,40 @@ namespace Delivery_Project.AdminManager
                         {
                             OrderID.Text = order[i].OrderID.ToString();
                             CustomerID.Text = order[i].CustomerID + "";
-                            CustomerID.Text = order[i].CustomerID + "";
-                            DestinationAdd.Text = order[i].FullName + "";
-                            DestinationCity.Text = order[i].Address;
-                            customerName.Text = order[i].CityId + "";
-                            Phone.Text = order[i].Address;
-                            Quantity.Text = order[i].CityId + "";
+                            DestinationAdd.Text = order[i].Address;
+                            DestinationCity.Text = order[i].CityId + "";
+                            customerName.Text = order[i].FullName;
                             Phone.Text = order[i].Phone + "";
+                            hidChooseDeliveryTime.Value = order[i].ChooseDeliveryTime+"";
+                            Quantity.Text = order[i].Quantity + "";
                             hidShipId.Value = OrderId;
+                        }
+                    }
+                }
+                string ShipId = Request["ShipId"] + "";
+                if (string.IsNullOrEmpty(ShipId))
+                {
+                    ShipId = "-1";
+                }
+                else
+                {
+                    int sID = int.Parse(ShipId);
+                    List<Shipments> shipments = (List<Shipments>)Application["Shipments"];
+                    for (int i = 0; i < shipments.Count; i++)
+                    {
+                        if (shipments[i].ShipId == sID)
+                        {
+                            OrderID.Text = shipments[i].OrderID.ToString();
+                            CustomerID.Text = shipments[i].CustomerID + "";
+                            SourceAdd.Text = shipments  [i].SourceAdd + "";
+                            SourceCity.Text = shipments[i].SourceCity + "";
+                            DestinationAdd.Text = shipments[i].DestinationAdd;
+                            DestinationCity.Text = shipments[i].DestinationCity + "";
+                            customerName.Text = shipments[i].CustomerName+"";
+                            Phone.Text = shipments[i].Phone + "";
+                            Quantity.Text = shipments[i].Quantity + "";
+                            ddlDriverId.Text = shipments[i].DriverId + "";
+                            hidShipId.Value = ShipId;
                         }
                     }
                 }
@@ -66,6 +93,7 @@ namespace Delivery_Project.AdminManager
                 string.IsNullOrEmpty(DestinationCity.Text) ||
                 string.IsNullOrEmpty(customerName.Text) ||
                 string.IsNullOrEmpty(Phone.Text) ||
+                 hidChooseDeliveryTime.Value==null ||
                 ddlDriverId.SelectedValue == "0" ||
                 string.IsNullOrEmpty(Quantity.Text))
             {
@@ -81,6 +109,17 @@ namespace Delivery_Project.AdminManager
             shipment.SourceCity = SourceCity.Text;
             shipment.DestinationAdd = DestinationAdd.Text;
             shipment.DestinationCity = DestinationCity.Text;
+            DateTime dateDelivery;
+            if (DateTime.TryParse(hidChooseDeliveryTime.Value, out dateDelivery) &&
+                dateDelivery >= new DateTime(1900, 1, 1) && dateDelivery <= new DateTime(2079, 6, 6))
+            {
+                shipment.DateDelivery = dateDelivery;
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('אנא הכנס תאריך משלוח חוקי');", true);
+                return;
+            }
             shipment.CustomerName = customerName.Text;
             shipment.Phone = Phone.Text;
             shipment.DriverId = int.Parse(ddlDriverId.SelectedValue);

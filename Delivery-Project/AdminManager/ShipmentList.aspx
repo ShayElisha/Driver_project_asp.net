@@ -24,6 +24,7 @@
                                     <th>מזהה משלוח</th>
                                     <th>מזהה הזמנה</th>
                                     <th>מזהה לקוח</th>
+                                    <th>שם לקוח</th>
                                     <th>כתובת מקור</th>
                                     <th>עיר מקור</th>
                                     <th>כתובת יעד</th>
@@ -46,6 +47,7 @@
                                             <td><%#Eval("ShipId") %></td>
                                             <td><%#Eval("OrderID") %></td>
                                             <td><%#Eval("CustomerID") %></td>
+                                            <td><%#Eval("CustomerName") %></td>
                                             <td><%#Eval("SourceAdd") %></td>
                                             <td><%#Eval("SourceCity") %></td>
                                             <td><%#Eval("DestinationAdd") %></td>
@@ -59,6 +61,7 @@
                                             <td><%#Eval("status") %></td>
                                             <td><%#Eval("AddDate") %></td>
                                             <td>
+                                                <a href="ShipmentAddEdit.aspx?ShipId=<%#Eval("ShipId") %>">ערוך <span class="fa fa-pencil"></span></a>  
                                                 <asp:LinkButton ID="lnkDelete" runat="server" CommandName="Delete" CommandArgument='<%# Eval("ShipId") %>' Text="מחק" OnClientClick="return confirm('האם אתה בטוח שברצונך למחוק כתובת זו?');"></asp:LinkButton>                                                               
                                             </td>
                                         </tr>

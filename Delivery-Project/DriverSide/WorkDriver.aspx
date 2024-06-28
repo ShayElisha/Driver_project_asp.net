@@ -152,7 +152,9 @@
         var isWorking = false;
 
         function startTimer() {
+            
             document.getElementById("timer").style.display = 'block'; // Show the timer
+            document.getElementById("timer").style.zIndex = 10000;
             timer = setInterval(function () {
                 elapsedSeconds++;
                 localStorage.setItem('elapsedSeconds', elapsedSeconds);
@@ -161,6 +163,7 @@
         }
 
         function stopTimer() {
+            document.getElementById("timer").style.display = 'none';
             clearInterval(timer);
             elapsedSeconds = 0;
             document.getElementById("timerDisplay").innerText = formatTime(elapsedSeconds);
@@ -200,7 +203,20 @@
                 isWorking = false;
             }
         }
-
+        function getCoordinates(city, address) {
+            return new Promise((resolve, reject) => {
+                var url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address + ', ' + city)}`;
+                axios.get(url)
+                    .then(response => {
+                        if (response.data.length > 0) {
+                            resolve({ lat: response.data[0].lat, lon: response.data[0].lon });
+                        } else {
+                            reject('No coordinates found');
+                        }
+                    })
+                    .catch(error => reject(error));
+            });
+        }
         function clearMarkers() {
             for (var i = 0; i < markers.length; i++) {
                 map.removeLayer(markers[i]);
@@ -221,6 +237,7 @@
                 })
                 .catch(error => console.error('Error loading shipments:', error));
         }
+
 
         function showMap(shipments) {
             var mapDiv = document.getElementById('map');
@@ -243,17 +260,28 @@
                     markers.push(sourceMarker);
 
                     getCoordinates(shipment.DestinationCity, shipment.DestinationAdd).then(destinationCoordinates => {
-                        var destinationMarker = L.marker([destinationCoordinates.lat, destinationCoordinates.lon]).addTo(map)
+                        var destinationMarker = L.marker([destinationCoordinates.lat, destinationCoordinates.lon], { icon: L.icon({ iconUrl: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' }) }).addTo(map)
                             .bindPopup(`
-                                <div>
-                                    <strong>Destination:</strong> ${shipment.DestinationCity}, ${shipment.DestinationAdd}<br>
-                                    <button onclick="navigate('${shipment.DestinationAdd}, ${shipment.DestinationCity}')">Navigate</button>
-                                </div>
-                            `);
+                        <div>
+                            <strong>Destination:</strong> ${shipment.DestinationCity}, ${shipment.DestinationAdd}<br>
+                            <button onclick="navigate('${shipment.DestinationAdd}, ${shipment.DestinationCity}')">Navigate</button>
+                        </div>
+                    `);
                         markers.push(destinationMarker);
-                    });
-                });
+                    }).catch(error => console.error('Error getting destination coordinates:', error));
+                }).catch(error => console.error('Error getting source coordinates:', error));
             });
+
+            // הוספת סמן למיקום בזמן אמת
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var realTimeMarker = L.marker([position.coords.latitude, position.coords.longitude], {
+                        icon: L.icon({ iconUrl: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png' })
+                    }).addTo(map)
+                        .bindPopup(`<div><strong>Current Location</strong></div>`);
+                    markers.push(realTimeMarker);
+                });
+            }
         }
 
         function navigate(destination) {
@@ -344,7 +372,7 @@
                                 <td><%#Eval("Phone") %></td>
                                 <td><%#Eval("Quantity") %></td>
                                 <td>
-<asp:Button ID="AddToo" runat="server" CssClass="btn" Text="הוסף למשאית" OnClientClick="HandleAddToTruck(this); return false;" CommandArgument='<%# Eval("ShipId") + "," + Eval("OrderID") %>' OnClick="AddToTruckButton_Click" data-shipment-id='<%# Eval("ShipId") %>' />
+                                    <asp:Button ID="AddToo" runat="server" CssClass="btn" Text="הוסף למשאית" OnClientClick="HandleAddToTruck(this); return false;" CommandArgument='<%# Eval("ShipId") + "," + Eval("Phone") + "," + Eval("OrderID") %>' OnClick="AddToTruckButton_Click" data-shipment-id='<%# Eval("ShipId") %>' />
                                     <div class="hidden-btns">
                                         <asp:Button ID="btnNavigate" runat="server" CssClass="btn" Text="Navigate" OnClientClick='<%# "navigate(\"" + Eval("DestinationAdd") + ", " + Eval("DestinationCity") + "\"); return false;" %>' />
                                         <asp:Button ID="Button2" runat="server" CssClass="btn" Text="נמסר" CommandArgument='<%# Eval("ShipId") + "," + Eval("Phone") + "," + Eval("OrderID") %>' OnClick="DeliverOrderButton_Click" />
